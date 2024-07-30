@@ -8,18 +8,18 @@ using CashFlow.Infraestructure.DataAccess;
 using System.Linq;
 
 namespace CashFlow.Application.UseCases.Expenses.Register;
-public class RegisterExpensesUseCase
+public class RegisterExpensesUseCase : IRegisterExpensesUseCase
 {
     private readonly IExpensensesRepository _repository;
     public RegisterExpensesUseCase(IExpensensesRepository repository)
     {
-        _repository = repository;   
+        _repository = repository;
     }
     public ResponseRegisteredExpenseJson Execute(RequestRegisterExpenseJson request)
     {
         Validade(request);
 
-        var dbContext = new CashFlowDbContext();
+        //var dbContext = new CashFlowDbContext();
         var entity = new Expense
         {
             Amount = request.Amount,

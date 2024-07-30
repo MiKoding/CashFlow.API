@@ -1,5 +1,6 @@
 using CashFlow.API.CultureMiddleware;
 using CashFlow.API.Filters;
+using CashFlow.Application;
 using CashFlow.Infraestructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,7 @@ builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)))
 //resumido de DependencyInjectionExtension.AddInfraestructure(builder.Services); ao utilizar THIS em DependencyINjection
 // this deixa implicito o valor de IServiceCollection
 builder.Services.AddInfraestructure(); 
+builder.Services.AddAplication(); 
 
 
 
