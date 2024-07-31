@@ -12,12 +12,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//builder.Configuration.GetConnectionString("Connection"); //recupera connection string do appsetings
 
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 
 //resumido de DependencyInjectionExtension.AddInfraestructure(builder.Services); ao utilizar THIS em DependencyINjection
 // this deixa implicito o valor de IServiceCollection
-builder.Services.AddInfraestructure(); 
+builder.Services.AddInfraestructure(builder.Configuration); 
 builder.Services.AddAplication(); 
 
 
