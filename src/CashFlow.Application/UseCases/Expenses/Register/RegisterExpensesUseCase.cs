@@ -19,7 +19,7 @@ public class RegisterExpensesUseCase : IRegisterExpensesUseCase
         _repository = repository;
         _unitOfWork = unitOfWork;   
     }
-    public ResponseRegisteredExpenseJson Execute(RequestRegisterExpenseJson request)
+    public async Task<ResponseRegisteredExpenseJson> Execute(RequestRegisterExpenseJson request)
     {
         Validade(request);
 
@@ -33,8 +33,8 @@ public class RegisterExpensesUseCase : IRegisterExpensesUseCase
             paymentType = (Domain.Enums.PaymentType)request.paymentType,
         };
 
-        _repository.Add(entity);  
-        _unitOfWork.Commit();
+        await _repository.Add(entity);  
+        await _unitOfWork.Commit();
         
 
         return new ResponseRegisteredExpenseJson();
