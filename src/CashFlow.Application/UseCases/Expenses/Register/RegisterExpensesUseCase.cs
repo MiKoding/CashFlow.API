@@ -12,11 +12,11 @@ using System.Linq;
 namespace CashFlow.Application.UseCases.Expenses.Register;
 public class RegisterExpensesUseCase : IRegisterExpensesUseCase
 {
-    private readonly IExpensesRepository _repository;
+    private readonly IExpensesWriteOnlyRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public RegisterExpensesUseCase(IExpensesRepository repository,
+    public RegisterExpensesUseCase(IExpensesWriteOnlyRepository repository,
         IUnitOfWork unitOfWork,
         IMapper mapper)
     {
