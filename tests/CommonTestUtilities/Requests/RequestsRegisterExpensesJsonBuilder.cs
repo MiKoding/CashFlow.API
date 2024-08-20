@@ -5,7 +5,7 @@ using CashFlow.Communication.Requests;
 namespace CommonTestUtilities.Requests;
 public class RequestsRegisterExpensesJsonBuilder
 {
-    public static RequestRegisterExpenseJson Build()
+    public static RequestExpenseJson Build()
     {
         //var faker = new Faker();
 
@@ -18,7 +18,7 @@ public class RequestsRegisterExpensesJsonBuilder
         //    paymentType = CashFlow.Communication.Enums.PaymentType.CreditCard
         //}; Forma alternativa de buildar exemplos com o Faker Bogus
 
-        return new Faker<RequestRegisterExpenseJson>().RuleFor(r => r.Title, faker => faker.Commerce.ProductName())
+        return new Faker<RequestExpenseJson>().RuleFor(r => r.Title, faker => faker.Commerce.ProductName())
                                                 .RuleFor(r => r.Description, faker => faker.Commerce.ProductDescription())
                                                 .RuleFor(r => r.Date, faker => faker.Date.Past())
                                                 .RuleFor(r => r.Amount, faker => faker.Random.Decimal(min: 1, max : 100))
