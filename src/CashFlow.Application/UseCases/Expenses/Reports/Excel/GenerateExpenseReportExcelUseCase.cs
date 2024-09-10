@@ -1,12 +1,21 @@
 ﻿using CashFlow.Domain.Reports;
+using CashFlow.Domain.Repositories.Expenses;
 using ClosedXML.Excel;
 
 namespace CashFlow.Application.UseCases.Expenses.Reports.Excel;
 public class GenerateExpenseReportExcelUseCase : IGenerateExpenseReportExcelUseCase
 {
+    private readonly IExpensesReadOnlyRepository _repository;
+    public GenerateExpenseReportExcelUseCase(IExpensesReadOnlyRepository repository)
+    {
+        _repository = repository;
+    }
+
     public async Task<byte[]> Execute(DateOnly month)
     {
+        var expenses = await _repository.FilterByMonth(month);
         var workbook = new XLWorkbook();
+
         workbook.Author = "Mikaio Yamada";
         workbook.Style.Font.FontSize = 12;
         workbook.Style.Font.FontName = "Times New Roman";
