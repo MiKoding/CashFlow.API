@@ -14,6 +14,11 @@ public class GenerateExpenseReportExcelUseCase : IGenerateExpenseReportExcelUseC
     public async Task<byte[]> Execute(DateOnly month)
     {
         var expenses = await _repository.FilterByMonth(month);
+        if(expenses.Count == 0)
+        {
+            return [];
+        }
+
         var workbook = new XLWorkbook();
 
         workbook.Author = "Mikaio Yamada";
@@ -25,7 +30,9 @@ public class GenerateExpenseReportExcelUseCase : IGenerateExpenseReportExcelUseC
         InsertHeader(worksheet);
 
         var file = new MemoryStream();
-        workbook.SaveAs(file);  
+        workbook.SaveAs(file); 
+        
+        return file.ToArray();
     }
 
     private void InsertHeader(IXLWorksheet worksheet)
