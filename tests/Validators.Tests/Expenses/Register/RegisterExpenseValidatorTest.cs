@@ -52,7 +52,7 @@ public class RegisterExpenseValidatorTest
     {
         var validator = new ExpenseValidator();
         var request = RequestsRegisterExpensesJsonBuilder.Build();
-        request.paymentType = (PaymentType)700;
+        request.PaymentType = (PaymentType)700;
 
         var result = validator.Validate(request);   
 
