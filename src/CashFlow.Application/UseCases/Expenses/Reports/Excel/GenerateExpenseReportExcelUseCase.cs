@@ -21,7 +21,7 @@ public class GenerateExpenseReportExcelUseCase : IGenerateExpenseReportExcelUseC
             return [];
         }
 
-        var workbook = new XLWorkbook();
+        using var workbook = new XLWorkbook(); //serve para evitar o uso do dispose
 
         workbook.Author = "Mikaio Yamada";
         workbook.Style.Font.FontSize = 12;
