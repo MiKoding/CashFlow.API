@@ -1,11 +1,12 @@
 ﻿using CashFlow.Application.UseCases.Expenses.Reports.Pdf.Fonts;
+using CashFlow.Domain.Entities;
 using CashFlow.Domain.Reports;
 using CashFlow.Domain.Repositories.Expenses;
+using DocumentFormat.OpenXml.Bibliography;
 using MigraDoc.DocumentObjectModel;
-using MigraDoc.DocumentObjectModel.Visitors;
 using MigraDoc.Rendering;
 using PdfSharp.Fonts;
-using PdfSharp.Pdf;
+using System.Reflection;
 
 namespace CashFlow.Application.UseCases.Expenses.Reports.Pdf;
 public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCase
@@ -30,25 +31,12 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
         var document = CreateDocument(month);
         var page = CreatePage(document);
 
-        var table = page.AddTable();
-        table.AddColumn();
-        table.AddColumn();
-
-        var row = table.AddRow();
-        row.Cells[0].AddImage("C:\\Users\\Mikaio Yamada\\Downloads\\WhatsApp Image 2024-01-25 at 17.28.56.jpeg");
-
-        row.Cells[1].AddParagraph("Oiiiii, Mikaio Yamada");
-        row.Cells[1].Format.Font = new Font { Name = FontHelper.RALEWAY_BLACK, Size = 16};
-
-        var paragraph = page.AddParagraph();
-        var title = string.Format(ResourceReportGenerationMessages.TOTAL_SPENT_IN, month.ToString("Y"));
-
-        paragraph.AddFormattedText(title, new Font { Name = FontHelper.RALEWAY_BLACK, Size = 15});
-        paragraph.AddLineBreak();
+        CreateHeaderWithProfilePhotoAndName(page);
 
         var totalExpenses = expenses.Sum(expenses => expenses.Amount);
-        paragraph.AddFormattedText($"{totalExpenses}$", new Font { Name = FontHelper.WORKSANS_BLACK, Size = 50});
-        
+
+        CreateTotalSpentSection(page,month, totalExpenses);
+
         return RenderDocument(document);
     }
 
@@ -80,6 +68,39 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
         return section;
     }
 
+    private void CreateHeaderWithProfilePhotoAndName(Section page)
+    {
+        var table = page.AddTable();
+        table.AddColumn();
+        table.AddColumn("300");
+
+        var row = table.AddRow();
+        
+        var assembly = Assembly.GetExecutingAssembly();
+        var directyName = Path.GetDirectoryName(assembly.Location);
+        var pathFile = Path.Combine(directyName!, "Logo", "ProfilePhoto.png");
+        
+        row.Cells[0].AddImage(pathFile);
+
+        row.Cells[1].AddParagraph("Oiiiii, Mikaio Yamada");
+        row.Cells[1].Format.Font = new Font { Name = FontHelper.RALEWAY_BLACK, Size = 16 };
+        row.Cells[1].VerticalAlignment = MigraDoc.DocumentObjectModel.Tables.VerticalAlignment.Center;
+
+    }
+
+    private void CreateTotalSpentSection(Section page, DateOnly month, decimal totalExpenses)
+    {
+        var paragraph = page.AddParagraph();
+        paragraph.Format.SpaceBefore = "40";
+        paragraph.Format.SpaceAfter = "40";
+
+        var title = string.Format(ResourceReportGenerationMessages.TOTAL_SPENT_IN, month.ToString("Y"));
+
+        paragraph.AddFormattedText(title, new Font { Name = FontHelper.RALEWAY_BLACK, Size = 15 });
+        paragraph.AddLineBreak();
+
+        paragraph.AddFormattedText($"{totalExpenses}$", new Font { Name = FontHelper.WORKSANS_BLACK, Size = 50 });
+    }
     private byte[] RenderDocument(Document document)
     {
         var renderer = new PdfDocumentRenderer

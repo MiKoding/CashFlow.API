@@ -34,4 +34,8 @@
     <ProjectReference Include="..\CashFlow.Infraestructure\CashFlow.Infraestructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\Expenses\Reports\Pdf\Logo\" />
+  </ItemGroup>
+
 </Project>
