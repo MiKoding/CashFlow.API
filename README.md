@@ -33,5 +33,5 @@ teste por parte dos desenvolvedores.
 
 <!--BADGES-->
 [badge-dot-net]: https://img.shields.io/badge/.NET-512BD4?logo=dotnet&logoColor=fff&style=for-the-badge
-[badge-visual]: https://img.shields.io/visual-studio-marketplace/d/:extensionId
+[badge-visual-studio]: https://img.shields.io/visual-studio-marketplace/d/:extensionId
 [badge-mysql]: https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff&style=flat-square
