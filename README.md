@@ -15,7 +15,10 @@ oferecendo uma análise visual e eficaz das despesas.
 teste por parte dos desenvolvedores.
 
 ## CRIADO COM 
-![.NET Badge](https://img.shields.io/badge/.NET-512BD4?logo=dotnet&logoColor=fff&style=flat-square) 
+![badge-dot-net]
+![badge-visual-studio]
+![badge-mysql]
+
 ## REQUISITOS
 - Visual Studio 2022+ ou Visual Studio Code
 - MySql
@@ -27,3 +30,8 @@ teste por parte dos desenvolvedores.
   ```
   - Preencha as informações do `appsettings.Development.json`
   - Pode testar :)
+
+<!--BADGES-->
+[badge-dot-net]: https://img.shields.io/badge/.NET-512BD4?logo=dotnet&logoColor=fff&style=for-the-badge
+[badge-visual]: https://img.shields.io/visual-studio-marketplace/d/:extensionId
+[badge-mysql]: https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff&style=flat-square
