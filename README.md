@@ -13,3 +13,15 @@ oferecendo uma análise visual e eficaz das despesas.
 
 - RESTful API com Documentação Swagger: Interface documentada que facilita a integração e o
 teste por parte dos desenvolvedores.
+
+## REQUISITOS
+- Visual Studio 2022+ ou Visual Studio Code
+- MySql
+
+## INSTALAÇÃO
+- Clone o repositório:
+  ```sh
+  https://github.com/MiKoding/CashFlow.API.git
+  ```
+  - Preencha as informações do `appsettings.Development.json`
+  - Pode testar :)
