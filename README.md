@@ -14,6 +14,8 @@ oferecendo uma análise visual e eficaz das despesas.
 - RESTful API com Documentação Swagger: Interface documentada que facilita a integração e o
 teste por parte dos desenvolvedores.
 
+## CRIADO COM 
+![.NET Badge](https://img.shields.io/badge/.NET-512BD4?logo=dotnet&logoColor=fff&style=flat-square) 
 ## REQUISITOS
 - Visual Studio 2022+ ou Visual Studio Code
 - MySql
