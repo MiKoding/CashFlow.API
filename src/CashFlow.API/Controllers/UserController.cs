@@ -1,0 +1,26 @@
+﻿using CashFlow.Application.UseCases.Users.Register;
+using CashFlow.Communication.Requests;
+using CashFlow.Communication.Responses;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
+
+namespace CashFlow.API.Controllers;
+[Route("api/[controller]")]
+[ApiController]
+public class UserController : ControllerBase
+{
+    [HttpPost]
+    [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Register(
+        [FromServices] IRegisterUserUseCase useCase,
+        [FromBody] RequestRegisterUserJson request
+        )
+    {
+        var response = await useCase.Execute(request);
+
+        return Created(string.Empty, response);
+    }
+    
+}
