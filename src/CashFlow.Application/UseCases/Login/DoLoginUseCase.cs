@@ -30,13 +30,15 @@ public class DoLoginUseCase : IDoLoginUseCase
 
         var verifyPassword =  _passwordEncripter.Verify(request.Password, user.Password);
 
-        if(verifyPassword is false)
+        if(verifyPassword == false)
         {
             throw new InvalidLoginException();
         }
 
         return new ResponseRegisteredUserJson
         {
+            Name = user.Name,
+            Token = _accessTokenGenerator.Generate(user)
         };
     }
 }

@@ -4,8 +4,8 @@ using CashFlow.Application;
 using CashFlow.Infraestructure;
 using CashFlow.Infraestructure.Migrations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +15,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(config => config.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+{
+    Name = "Authorization",
+    Description = @"JWT Authorization header using the Bearer scheme.
+                    Enter 'Bearer'[space] and then your token in the text input below.
+                    Example: 'Bearer 1234abcdef",
+    In = ParameterLocation.Header,
+    Scheme = "Bearer",
+    Type = SecuritySchemeType.ApiKey
+}));
 
 //builder.Configuration.GetConnectionString("Connection"); //recupera connection string do appsetings
 

@@ -41,7 +41,7 @@ public class RegisterUserUseCase : IRegisterUserUseCase
         await ValidateUser(request);
 
         var user = _mapper.Map<User>(request);
-        user.Password = _passwordEncripter.Encrypt(user.Password);
+        user.Password = _passwordEncripter.Encrypt(request.Password);
         user.UserIdentifier = Guid.NewGuid();
 
         await _userWriteOnlyRepository.Add(user);

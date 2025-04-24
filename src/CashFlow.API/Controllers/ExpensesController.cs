@@ -11,12 +11,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace CashFlow.API.Controllers;
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class ExpensesController : ControllerBase
 {
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisteredExpenseJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
-    [Authorize]
     public async Task<IActionResult> Register([FromServices] IRegisterExpensesUseCase useCase, [FromBody] RequestExpenseJson request)
     {
 
