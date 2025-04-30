@@ -16,7 +16,7 @@ public partial class PasswordValidator<T> : PropertyValidator<T, string>
     }
     public override bool IsValid(ValidationContext<T> context, string password)
     {
-        if (string.IsNullOrEmpty(password))
+        if (string.IsNullOrWhiteSpace(password))
         {
             context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMessages.INVALID_PASSWORD);
             return false;
