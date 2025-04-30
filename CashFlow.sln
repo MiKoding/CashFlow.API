@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashFlow.Exception", "src\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validators.Tests", "tests\Validators.Tests\Validators.Tests.csproj", "{360A73EB-37D8-40B3-AB8C-CED2DAFC27BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTestUtilities", "tests\CommonTestUtilities\CommonTestUtilities.csproj", "{4432ABC0-F222-44F3-AF76-971F9B236A27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonTestUtilities", "tests\CommonTestUtilities\CommonTestUtilities.csproj", "{4432ABC0-F222-44F3-AF76-971F9B236A27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UseCases.Test", "tests\UseCases.Test\UseCases.Test.csproj", "{5B0D58D3-7D96-42A8-BB22-00A6AB161FF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{4432ABC0-F222-44F3-AF76-971F9B236A27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4432ABC0-F222-44F3-AF76-971F9B236A27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4432ABC0-F222-44F3-AF76-971F9B236A27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B0D58D3-7D96-42A8-BB22-00A6AB161FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B0D58D3-7D96-42A8-BB22-00A6AB161FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B0D58D3-7D96-42A8-BB22-00A6AB161FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B0D58D3-7D96-42A8-BB22-00A6AB161FF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{D2AE656C-D9DC-4911-A2B7-4B277EAFC9D3} = {FCC86A9A-B305-470E-828F-2E7C84598F17}
 		{360A73EB-37D8-40B3-AB8C-CED2DAFC27BF} = {80349D1E-F624-4523-BEBB-56538B88809E}
 		{4432ABC0-F222-44F3-AF76-971F9B236A27} = {80349D1E-F624-4523-BEBB-56538B88809E}
+		{5B0D58D3-7D96-42A8-BB22-00A6AB161FF9} = {80349D1E-F624-4523-BEBB-56538B88809E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {887F89DE-C854-48FF-A05C-7FAB8EA959B8}
