@@ -42,7 +42,8 @@ public static class DependencyInjectionExtension
     {
         var connectionString = configuration.GetConnectionString("Connection");
 
-        var serverVersion = new MySqlServerVersion(new Version(8, 0, 28));
+        //var serverVersion = new MySqlServerVersion(new Version(8, 0, 28)); é o mesmo do de baixo
+        var serverVersion = ServerVersion.AutoDetect(connectionString);
 
         //optionsBuilder.UseMySql(connectionString, serverVersion);
         
