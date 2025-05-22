@@ -6,6 +6,7 @@ using CashFlow.Infraestructure.Migrations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using CashFlow.Infraestructure.Extensions;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -90,7 +91,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-await MigrateDataBase();
+if (builder.Configuration.IsTestEnvironment() == false)
+{
+    await MigrateDataBase();
+}
 
 app.Run();
 

@@ -12,11 +12,12 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
         builder.UseEnvironment("Tests")
             .ConfigureServices( services =>
             {
-                var provider = services.AddEntityFrameworkMySql().BuildServiceProvider();
+                //AddEntityFrameworkInMemoryDatabase
+                var provider = services.AddEntityFrameworkInMemoryDatabase().BuildServiceProvider();
                 services.AddDbContext<CashFlowDbContext>(config =>
                 {
-                    config.UseInMemoryDatabase("inMemoryDbForTesting");
-                    config.UseInternalServiceProvider(provider);
+                    config.UseInMemoryDatabase("InMemoryDbForTesting");
+                   config.UseInternalServiceProvider(provider);
                 }
                     );
             });
