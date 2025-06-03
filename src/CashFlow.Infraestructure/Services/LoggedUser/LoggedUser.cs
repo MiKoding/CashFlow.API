@@ -27,6 +27,8 @@ public class LoggedUser : IloggedUser
 
         var identifier = jwtSecurityToken.Claims.First(claim => claim.Type == ClaimTypes.Sid).Value;
 
-        return await _dbContext.Users.AsNoTracking().FirstAsync(user => user.UserIdentifier == Guid.Parse(identifier));
+        return await _dbContext.Users
+            .AsNoTracking()
+            .FirstAsync(user => user.UserIdentifier == Guid.Parse(identifier));
     }
 }
