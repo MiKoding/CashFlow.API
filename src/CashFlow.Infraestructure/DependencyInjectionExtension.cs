@@ -3,11 +3,13 @@ using CashFlow.Domain.Repositories.Expenses;
 using CashFlow.Domain.Repositories.User;
 using CashFlow.Domain.Security.Cryptography;
 using CashFlow.Domain.Security.Tokens;
+using CashFlow.Domain.Services.ILoggedUser;
 using CashFlow.Infraestructure.DataAccess;
 using CashFlow.Infraestructure.DataAccess.Repositories;
 using CashFlow.Infraestructure.Extensions;
 using CashFlow.Infraestructure.Security.Cryptography;
 using CashFlow.Infraestructure.Security.Tokens;
+using CashFlow.Infraestructure.Services.LoggedUser;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +20,7 @@ public static class DependencyInjectionExtension
     public static void AddInfraestructure(this IServiceCollection services, IConfiguration configuration) //utilizado para injetar as dependencias do ExpenseRepository
     {
         services.AddScoped<IPasswordEncripter, Bcrypt>();
+        services.AddScoped<IloggedUser, LoggedUser>();
 
         AddToken(services, configuration);
         AddRepositories(services);

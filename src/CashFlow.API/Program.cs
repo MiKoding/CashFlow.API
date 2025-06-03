@@ -8,6 +8,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using CashFlow.Infraestructure.Extensions;
 using System.Text;
+using CashFlow.Domain.Security.Tokens;
+using CashFlow.API.Token;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,8 +58,14 @@ builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)))
 builder.Services.AddInfraestructure(builder.Configuration);
 builder.Services.AddAplication();
 
+builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
+
+//metodo que configura a injeção de dependecia da interface de IHttpContextAccessor usada na classe HttpContextTokenValue, conseguindo assim, ler o valor do token na request
+builder.Services.AddHttpContextAccessor();
+
 var signingKey = builder.Configuration.GetValue<string>("Settings:Jwt:SigningKey");
 
+//configuração inicial de token jwt
 builder.Services.AddAuthentication(config =>
 {
     config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

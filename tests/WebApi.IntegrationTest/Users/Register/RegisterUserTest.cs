@@ -55,11 +55,11 @@ public class RegisterUserTest : IClassFixture<CustomWebApplicationFactory>
 
         var response = await JsonDocument.ParseAsync(body);
 
-        var errors = response.RootElement.GetProperty("errorMesages").EnumerateArray();
+        var errors = response.RootElement.GetProperty("errorMessages").EnumerateArray();
 
-        var expectedMesage = ResourceErrorMessages.ResourceManager.GetString("NAME_EMPTY", new CultureInfo(cultureInfo));
+        var expectedMessage = ResourceErrorMessages.ResourceManager.GetString("NAME_EMPTY", new CultureInfo(cultureInfo));
 
-        errors.Should().HaveCount(1).And.Contain(error => error.GetString()!.Equals(expectedMesage));
+        errors.Should().HaveCount(1).And.Contain(error => error.GetString()!.Equals(expectedMessage));
 
     }
 }
