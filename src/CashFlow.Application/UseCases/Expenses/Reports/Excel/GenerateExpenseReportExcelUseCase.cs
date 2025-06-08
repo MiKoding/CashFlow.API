@@ -2,28 +2,34 @@
 using CashFlow.Domain.Repositories.Expenses;
 using ClosedXML.Excel;
 using CashFlow.Domain.Extensions;
+using CashFlow.Domain.Services.ILoggedUser;
+using CashFlow.Infraestructure.Services.LoggedUser;
 
 namespace CashFlow.Application.UseCases.Expenses.Reports.Excel;
 public class GenerateExpenseReportExcelUseCase : IGenerateExpenseReportExcelUseCase
 {
     private const string CURRENCY_STRING = "$";
     private readonly IExpensesReadOnlyRepository _repository;
-    public GenerateExpenseReportExcelUseCase(IExpensesReadOnlyRepository repository)
+    private readonly IloggedUser _loggedUser;
+    public GenerateExpenseReportExcelUseCase(IExpensesReadOnlyRepository repository, IloggedUser loggedUser)
     {
         _repository = repository;
+        _loggedUser = loggedUser;
     }
 
     public async Task<byte[]> Execute(DateOnly month)
     {
         var expenses = await _repository.FilterByMonth(month);
-        if(expenses.Count == 0)
+        var loggedUser = await _loggedUser.Get();
+
+        if (expenses.Count == 0)
         {
             return [];
         }
 
         using var workbook = new XLWorkbook(); //serve para evitar o uso do dispose
 
-        workbook.Author = "Mikaio Yamada";
+        workbook.Author = loggedUser.Name;
         workbook.Style.Font.FontSize = 12;
         workbook.Style.Font.FontName = "Times New Roman";
 
