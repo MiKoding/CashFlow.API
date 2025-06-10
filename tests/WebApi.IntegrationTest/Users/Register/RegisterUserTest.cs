@@ -11,14 +11,12 @@ using System.Text.Json;
 using WebApi.IntegrationTest.InlineData;
 
 namespace WebApi.IntegrationTest.Users.Register;
-public class RegisterUserTest : IClassFixture<CustomWebApplicationFactory>
+public class RegisterUserTest : CashFlowClassFixture
 {
     private const string MEHTOD = "api/User";
 
-    private readonly HttpClient _httpClient;
-    public RegisterUserTest(CustomWebApplicationFactory webApplicationFactory)
+    public RegisterUserTest(CustomWebApplicationFactory webApplicationFactory) : base(webApplicationFactory)
     {
-        _httpClient = webApplicationFactory.CreateClient();
     }
 
     [Fact]
@@ -28,7 +26,7 @@ public class RegisterUserTest : IClassFixture<CustomWebApplicationFactory>
         //var httpClient = new HttpClient();
         //httpClient.BaseAddress = new Uri("");
 
-        var result =  await _httpClient.PostAsJsonAsync(MEHTOD,request);
+        var result =  await DoPost(MEHTOD,request);
 
         result.StatusCode.Should().Be(System.Net.HttpStatusCode.Created);
 
@@ -46,8 +44,7 @@ public class RegisterUserTest : IClassFixture<CustomWebApplicationFactory>
         var request = RequestRegisterUserJsonBuilder.Build();
         request.Name = string.Empty;
 
-        _httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(cultureInfo));
-        var result = await _httpClient.PostAsJsonAsync(MEHTOD, request);
+        var result = await DoPost(requestUri: MEHTOD, request: request, culture: cultureInfo);
 
         result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
