@@ -42,7 +42,7 @@ public class RegisterExpenseUseCaseTest
     }
     private RegisterExpensesUseCase CreateUseCase(CashFlow.Domain.Entities.User user)
     {
-        var repository = ExpenseWriteOnlyRepository.Build();
+        var repository = ExpensesWriteOnlyRepository.Build();
         var mapper = MapperBuilder.Build();
         var unitOfWork = UnitOfWorkBuilder.Build();
         var loggedUser = LoggedUserBuilder.Build(user);
