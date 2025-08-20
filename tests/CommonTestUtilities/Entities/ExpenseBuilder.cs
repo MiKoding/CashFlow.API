@@ -28,6 +28,7 @@ public class ExpenseBuilder
     {
         return new Faker<Expense>()
             .RuleFor(u => u.IdExpense, _ => 1)
+            .RuleFor(u => u.Description,faker => faker.Lorem.Text())
             .RuleFor(u => u.Title, faker => faker.Commerce.ProductDescription())
             .RuleFor(r => r.Date, faker => faker.Date.Past())
             .RuleFor(r => r.Amount, faker => faker.Random.Decimal(min: 1, max: 1000))
