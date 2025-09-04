@@ -41,7 +41,7 @@ public class DeleteExpenseUseCaseTest
 
         var act = async () => await useCase.Execute(id: 1000); // Assuming 1 is an ID that does not exist
 
-        var result = await act.Should().ThrowAsync<ErrorOnValidationException>();
+        var result = await act.Should().ThrowAsync<NotFoundException>();
 
         result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains(ResourceErrorMessages.EXPENSE_NOT_FOUND));
     }
