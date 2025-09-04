@@ -13,7 +13,7 @@ using WebApi.IntegrationTest.Resources;
 namespace WebApi.IntegrationTest;
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
-    public ExpenseIdentityManager _Expense { get; private set; } = default!;
+    public ExpenseIdentityManager Expense { get; private set; } = default!;
     public UserIdentityManager User_Team_Member { get; private set; } = default!;
     public UserIdentityManager User_Admin { get; private set; } = default!;
 
@@ -70,6 +70,6 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 
         dbContext.Expenses.Add(expense);
 
-        _Expense = new ExpenseIdentityManager(expense);
+        Expense = new ExpenseIdentityManager(expense);
     }
 }
