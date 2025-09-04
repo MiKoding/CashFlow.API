@@ -1,0 +1,24 @@
+﻿using CashFlow.Domain.Entities;
+using CashFlow.Domain.Repositories.Expenses;
+using Moq;
+
+namespace CommonTestUtilities.Repositories;
+public class ExpensesUpdateOnlyRepositoryBuilder
+{
+    private readonly Mock<IExpensesUpdateOnlyRepository> _repository;
+
+    public ExpensesUpdateOnlyRepositoryBuilder()
+    {
+        _repository = new Mock<IExpensesUpdateOnlyRepository>();
+    }
+
+    public ExpensesUpdateOnlyRepositoryBuilder GetById(User user, Expense? expense)
+    {
+        if (expense is not null)
+            _repository.Setup(r => r.GetById(user, expense.IdExpense)).ReturnsAsync(expense);
+
+        return this;
+    }
+
+    public IExpensesUpdateOnlyRepository Build() => _repository.Object; 
+}
