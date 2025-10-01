@@ -31,7 +31,7 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
     {
         var loggedUser = await _loggedUser.Get();
 
-        var expenses = await _repository.FilterByMonth(month);
+        var expenses = await _repository.FilterByMonth(loggedUser,month);
         if (expenses.Count == 0)
         {
             return [];

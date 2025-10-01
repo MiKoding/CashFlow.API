@@ -135,7 +135,7 @@
   <data name="EXPENSES_CANNOT_FOR_THE_FUTURE" xml:space="preserve">
     <value>As despesas não podem ser para o futuro</value>
   </data>
-  <data name="EXPENSES_NOT_FOUND" xml:space="preserve">
+  <data name="EXPENSE_NOT_FOUND" xml:space="preserve">
     <value>Despesa não encontrada</value>
   </data>
   <data name="INVALID_PASSWORD" xml:space="preserve">
