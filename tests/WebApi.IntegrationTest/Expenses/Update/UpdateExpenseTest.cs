@@ -16,7 +16,7 @@ public class UpdateExpenseTest : CashFlowClassFixture
 
     public UpdateExpenseTest(CustomWebApplicationFactory webApplicationFactory) : base(webApplicationFactory)
     {
-        _token = webApplicationFactory.User_Admin.GetToken();
+        _token = webApplicationFactory.User_Team_Member.GetToken();
         _expenseId = webApplicationFactory.Expense_MemberTeam.GetExpenseId();
     }
 
@@ -28,7 +28,7 @@ public class UpdateExpenseTest : CashFlowClassFixture
 
         var response = await DoPut($"{METHOD}/{_expenseId}", request, _token);
 
-        response.StatusCode.Should().Be(System.Net.HttpStatusCode.NoContent);
+        response.StatusCode.Should().Be(HttpStatusCode.NoContent);
     }
 
     [Theory]
@@ -38,7 +38,7 @@ public class UpdateExpenseTest : CashFlowClassFixture
         var request = RequestExpenseJsonBuilder.Build();
         request.Title = string.Empty;
 
-        var result = await DoPost(requestUri: $"{METHOD}/{_expenseId}", request: request, token: _token, culture: culture);
+        var result = await DoPut(requestUri: $"{METHOD}/{_expenseId}", request: request, token: _token, culture: culture);
 
         result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
@@ -59,7 +59,7 @@ public class UpdateExpenseTest : CashFlowClassFixture
     {
         var request = RequestExpenseJsonBuilder.Build();
 
-        var result = await DoPost(requestUri: $"{METHOD}/1000", request: request, token: _token, culture: culture);
+        var result = await DoPut(requestUri: $"{METHOD}/1000", request: request, token: _token, culture: culture);
 
         result.StatusCode.Should().Be(HttpStatusCode.NotFound);
 
