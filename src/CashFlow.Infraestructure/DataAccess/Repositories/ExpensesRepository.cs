@@ -51,7 +51,7 @@ internal class ExpensesRepository : IExpensesReadOnlyRepository, IExpensesWriteO
         var endDate = new DateTime(year: date.Year, month: date.Month, day: daysInMonth, hour: 23, minute:59, second:59);
 
         return await _dbContext.Expenses.AsNoTracking()
-            .Where(expense => expense.Date >= startDate && expense.Date <= endDate)
+            .Where(expense => expense.UserId == user.Id && expense.Date >= startDate && expense.Date <= endDate)
             .OrderBy(expense => expense.Date)
             .ThenBy(expense => expense.Title)
             .ToListAsync();

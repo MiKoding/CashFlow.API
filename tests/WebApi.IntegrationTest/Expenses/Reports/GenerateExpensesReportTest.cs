@@ -21,9 +21,11 @@ public class GenerateExpensesReportTest : CashFlowClassFixture
     [Fact]
     public async Task Success_Pdf()
     {
-        var result = await DoGet(requestUri: $"{METHOD}/pdf?month{_expenseDate:Y}", token: _amdinToken);
+        var formattedDate = _expenseDate.ToString("yyyy-MM");
 
-        result.StatusCode.Should().Be(HttpStatusCode.NoContent);
+        var result = await DoGet(requestUri: $"{METHOD}/pdf?month={formattedDate}", token: _amdinToken);
+
+        result.StatusCode.Should().Be(HttpStatusCode.OK);
 
         result.Content.Headers.ContentType.Should().NotBeNull();
         result.Content.Headers.ContentType!.MediaType.Should().Be(MediaTypeNames.Application.Pdf);
@@ -33,9 +35,11 @@ public class GenerateExpensesReportTest : CashFlowClassFixture
     [Fact]
     public async Task Success_Excel()
     {
-        var result = await DoGet(requestUri: $"{METHOD}/excel?month{_expenseDate:Y}", token: _amdinToken);
+        var formattedDate = _expenseDate.ToString("yyyy-MM");
 
-        result.StatusCode.Should().Be(HttpStatusCode.NoContent);
+        var result = await DoGet(requestUri: $"{METHOD}/excel?month={formattedDate}", token: _amdinToken);
+
+        result.StatusCode.Should().Be(HttpStatusCode.OK);
 
         result.Content.Headers.ContentType.Should().NotBeNull();
         result.Content.Headers.ContentType!.MediaType.Should().Be(MediaTypeNames.Application.Octet);
@@ -45,7 +49,7 @@ public class GenerateExpensesReportTest : CashFlowClassFixture
     [Fact]
     public async Task Error_Forbidden_User_Not_Allowed_Pdf()
     {
-        var result = await DoGet(requestUri: $"{METHOD}/pdf?month{_expenseDate:Y}", token: _teamMemberToken);
+        var result = await DoGet(requestUri: $"{METHOD}/pdf?month={_expenseDate:Y}", token: _teamMemberToken);
 
         result.StatusCode.Should().Be(HttpStatusCode.Forbidden);
     } 

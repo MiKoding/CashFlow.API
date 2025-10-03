@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Responses;
 
 namespace CommonTestUtilities.Requests;
 public class RequestRegisterUserJsonBuilder
