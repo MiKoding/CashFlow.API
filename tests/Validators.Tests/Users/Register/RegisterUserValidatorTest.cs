@@ -3,7 +3,7 @@ using CashFlow.Exception;
 using CommonTestUtilities.Requests;
 using FluentAssertions;
 
-namespace Validators.Tests.Expenses.Users.Register;
+namespace Validators.Tests.Users.Register;
 public class RegisterUserValidatorTest 
 {
     [Fact]

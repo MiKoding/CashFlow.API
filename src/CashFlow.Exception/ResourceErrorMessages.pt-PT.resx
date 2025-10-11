@@ -120,14 +120,35 @@
   <data name="AMOUNT_MUST_BE_GREATER_THAN_ZERO" xml:space="preserve">
     <value>O montante deve ser maior que zero.</value>
   </data>
+  <data name="EMAIL_ALREADY_REGISTERED" xml:space="preserve">
+    <value>O email ja tem em algum lugar desse banco de dados</value>
+  </data>
+  <data name="EMAIL_EMPTY" xml:space="preserve">
+    <value>Email tem nada</value>
+  </data>
+  <data name="EMAIL_INVALID" xml:space="preserve">
+    <value>Email n passou</value>
+  </data>
+  <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
+    <value>Email ou senha n passou</value>
+  </data>
   <data name="EXPENSES_CANNOT_FOR_THE_FUTURE" xml:space="preserve">
     <value>As despesas não podem ser para o futuro</value>
   </data>
   <data name="EXPENSE_NOT_FOUND" xml:space="preserve">
     <value>Despesa não encontrada</value>
   </data>
+  <data name="INVALID_PASSWORD" xml:space="preserve">
+    <value>Your senia tem q conter 8 caracteres</value>
+  </data>
+  <data name="NAME_EMPTY" xml:space="preserve">
+    <value>O nombre esta vazio</value>
+  </data>
   <data name="PAYMENT_TYPE_INVALID" xml:space="preserve">
     <value>O tipo de pagamento não é válido</value>
+  </data>
+  <data name="PASSWORD_DIFFERENT_CURRENT_PASSWORD" xml:space="preserve">
+    <value>A mesma senha pae</value>
   </data>
   <data name="TITLE_REQUIRED" xml:space="preserve">
     <value>O título é obrigatório</value>

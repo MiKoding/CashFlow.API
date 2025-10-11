@@ -1,17 +1,14 @@
 ﻿using CashFlow.Application.UseCases.Users.Register;
 using CashFlow.Communication.Requests;
-using CashFlow.Communication.Responses;
-using CommonTestUtilities.Requests;
 using FluentAssertions;
 using FluentValidation;
 
-namespace Validators.Tests.Expenses.Users;
-public class PasswordValidatorTest
+namespace UseCases.Test.Users;
+public class PassWordValidatorTest
 {
     [Theory]
     [InlineData("")]
-    [InlineData("    ")]
-    [InlineData(null)]
+    [InlineData("     ")]
     [InlineData("a")]
     [InlineData("aa")]
     [InlineData("aaa")]
@@ -20,12 +17,12 @@ public class PasswordValidatorTest
     [InlineData("aaaaaa")]
     [InlineData("aaaaaaa")]
     [InlineData("aaaaaaaa")]
-    [InlineData("AAAAAAAAA")]
-    [InlineData("AAAAAAAA1")]
-    public void Error_Password_Empty(string password)
+    [InlineData("Aaaaaaaa")]
+    [InlineData("Aaaaaaa1")]
+    public void Error_Password_Invalid(string password)
     {
         var validator = new PasswordValidator<RequestRegisterUserJson>();
-
+        
         var result = validator.IsValid(new ValidationContext<RequestRegisterUserJson>(new RequestRegisterUserJson()), password);
 
         result.Should().BeFalse();
